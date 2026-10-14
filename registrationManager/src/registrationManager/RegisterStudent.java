@@ -6,33 +6,36 @@ import java.time.Year;
 
 public class RegisterStudent {
 	
-	WriterAndReader write = new WriterAndReader();
+	static WriterAndReader write = new WriterAndReader();
 	
-	String register;
-	String name;
-	String email;
-	String course;
-	Status status;
-	
-	public RegisterStudent(Scanner input) {
-		
-		write.checkAndInitializeArchieve();
-		
-		System.out.println("=== Cadastro de Novo Aluno ===");
-		
-		write.write(setRegister());
-		write.write(setName(input));
-		write.write(setEmail(input));
-		write.writeStatus(setStatus(input));
-
-		System.out.println("Sucesso");
-	}
+	static String register;
+	static String name;
+	static String email;
+	static String course;
+	static Status status;
 	
 	public RegisterStudent() {
 		
 	}
 	
-	public String setRegister() {
+	public static void register(Scanner input) {
+		write.checkAndInitializeArchieve();
+		
+		System.out.println("=== Cadastro de Novo Aluno ===");
+		
+		if (input != null) {
+			write.write(setRegister());
+			write.write(setName(input));
+			write.write(setEmail(input));
+			write.writeStatus(setStatus(input));
+		}
+
+		System.out.println("\nRegistro concluido com sucesso!");
+		printInfo();
+		input.nextLine(); // receive the last \n escape character and clean the buffer
+	}
+	
+	public static String setRegister() {
 		Random random = new Random();
 		int currentYear = Year.now().getValue();
 		int sequential = random.nextInt(100000);
@@ -42,14 +45,14 @@ public class RegisterStudent {
 		return register;
 	}
 	
-	public String setName(Scanner input) {
+	public static String setName(Scanner input) {
 		boolean run = true;
 		
 		System.out.print("Digite o nome do aluno: ");
 		String scan = input.nextLine();
 		
 		while (run) {
-			if (scan.isBlank()) {
+			if (scan.isBlank() && scan.isEmpty()) {
 				System.out.println("Entrada invalida. O nome nao pode estar em branco.");
 				scan = input.nextLine();
 			} else {
@@ -60,7 +63,7 @@ public class RegisterStudent {
 		return name;
 	}
 	
-	public String setEmail(Scanner input) {
+	public static String setEmail(Scanner input) {
 		
 		boolean run = true;
 		
@@ -86,7 +89,7 @@ public class RegisterStudent {
 		return email;
 	}
 	
-	public Status setStatus(Scanner input) {
+	public static Status setStatus(Scanner input) {
 		
 		boolean run = true;
 		
@@ -114,12 +117,12 @@ public class RegisterStudent {
 		return status;
 	}
 	
-	public void printInfo() {
+	public static void printInfo() {
 		
 		System.out.println("Aluno: " + name);
 		System.out.println("Matricula: " + register);
 		System.out.println("Email: " + email);
-		System.out.println("Status da matricula: " + status + "\n");
+		System.out.println("Status da matricula: " + status);
 		
 	}
 

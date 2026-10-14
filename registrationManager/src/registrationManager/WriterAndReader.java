@@ -24,9 +24,9 @@ public class WriterAndReader {
 		}
 	}
 	
-	public void write(String scan) {
+	public void write(String input) {
 		try (PrintWriter writer = new PrintWriter(new FileWriter(archieveName, true))) {
-			writer.print(scan + ",");
+			writer.print(input + ",");
 		} catch (IOException e) {
 			System.out.println("Erro ao escrever no arquivo: " + archieveName + e.getMessage());
 		}
@@ -34,7 +34,7 @@ public class WriterAndReader {
 	
 	public void writeStatus(Status status) {
 		try (PrintWriter writer = new PrintWriter(new FileWriter(archieveName, true))) {
-			writer.print(status + ",");
+			writer.print(status + "\n");
 		} catch (IOException e) {
 			System.out.println("Erro ao escrever no arquivo: " + archieveName + e.getMessage());
 		}

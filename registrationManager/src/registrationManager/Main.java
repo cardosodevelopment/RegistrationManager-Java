@@ -6,8 +6,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		boolean menu = true;
+		Scanner input = new Scanner(System.in);
 		Scanner option = new Scanner(System.in);
-		Scanner studentInput = new Scanner(System.in);
 		
 		while(menu) {
 			
@@ -27,26 +27,23 @@ public class Main {
 			System.out.println("\nSelecione uma opção");
 			
 			while (menuRun) {
+				
 				if (!option.hasNextInt()) {
 					System.out.println("Digite apenas numeros.");
-					option.next();
+					option.nextInt();
 				} else {
-					int i = option.nextInt();
-					
-					switch (i) {
+					switch (option.nextInt()) {
 						case 1:
-							RegisterStudent student = new RegisterStudent(studentInput);
-							student.printInfo();
-							menuRun = false;
-							break;
-						case 7:
+							RegisterStudent.register(input);
 							menuRun = false;
 							break;
 						default: System.out.println("Opcao invalida. Digite uma opcao de acordo com o Menu.");
+							break;
 					}
 				}
 			}
 		}
 		option.close();
+		input.close();
 	}
 }
