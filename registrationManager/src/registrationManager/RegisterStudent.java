@@ -1,14 +1,13 @@
 package registrationManager;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 import java.time.Year;
 
 public class RegisterStudent {
 	
-	ArrayList<String> student = new ArrayList<String>();
-	Reader reader = new Reader();
+	WriterAndReader write = new WriterAndReader();
+	
 	String register;
 	String name;
 	String email;
@@ -16,13 +15,15 @@ public class RegisterStudent {
 	Status status;
 	
 	public RegisterStudent(Scanner input) {
+		
+		write.checkAndInitializeArchieve();
+		
 		System.out.println("=== Cadastro de Novo Aluno ===");
-		this.name = setName(input);
-		reader.read(this.name);
-		this.email = setEmail(input);
-		reader.read(this.email);
-		this.status = setStatus(input);
-		this.register = setRegister();
+		
+		write.write(setRegister());
+		write.write(setName(input));
+		write.write(setEmail(input));
+		write.writeStatus(setStatus(input));
 
 		System.out.println("Sucesso");
 	}

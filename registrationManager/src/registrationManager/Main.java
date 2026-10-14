@@ -7,7 +7,6 @@ public class Main {
 		
 		boolean menu = true;
 		Scanner option = new Scanner(System.in);
-		
 		Scanner studentInput = new Scanner(System.in);
 		
 		while(menu) {
